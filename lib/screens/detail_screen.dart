@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../model/to_do_model.dart';
@@ -17,10 +18,12 @@ class DetailScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              toDoItem.isDone ? Icons.dangerous : null,
-              color: Colors.red,
-              size: 32,
+            Visibility(
+              visible: toDoItem.isDone,
+              child: CachedNetworkImage(
+                imageUrl: 'https://c.tenor.com/3PCreHGZ3rcAAAAM/done-well.gif',
+                placeholder: (context, url) => const CircularProgressIndicator(),
+              ),
             ),
             Text(
               toDoItem.text,
