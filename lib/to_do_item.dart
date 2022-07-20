@@ -14,6 +14,14 @@ class ToDoItemView extends StatefulWidget {
 }
 
 class _ToDoItemViewState extends State<ToDoItemView> {
+  late bool _isDone;
+
+  @override
+  void initState() {
+    super.initState();
+    _isDone = widget.toDoItem.isDone;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -47,10 +55,11 @@ class _ToDoItemViewState extends State<ToDoItemView> {
                 Row(
                   children: [
                     Checkbox(
-                      value: widget.toDoItem.isDone,
+                      value: _isDone,
                       onChanged: (bool? value) {
                         setState(() {
-                          widget.toDoItem.isDone = value!;
+                          _isDone = value!;
+                          ToDoModel.update(widget.toDoItem.id, widget.toDoItem.text, value);
                         });
                       },
                     ),
