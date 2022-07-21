@@ -25,7 +25,6 @@ class AddScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
-                  flex: 1,
                   child: Padding(
                     padding: const EdgeInsets.only(right: 8.0),
                     child: OutlinedButton(
@@ -37,7 +36,6 @@ class AddScreen extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  flex: 1,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: ElevatedButton(
