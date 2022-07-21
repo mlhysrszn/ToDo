@@ -14,12 +14,16 @@ class ToDoItemView extends StatefulWidget {
 }
 
 class _ToDoItemViewState extends State<ToDoItemView> {
-  late bool _isDone;
+  late Map<String, dynamic> _toDo;
 
   @override
   void initState() {
     super.initState();
-    _isDone = widget.toDoItem.isDone;
+    _toDo = {
+      'id': widget.toDoItem.id,
+      'text': widget.toDoItem.text,
+      'isDone': widget.toDoItem.isDone
+    };
   }
 
   @override
@@ -47,19 +51,21 @@ class _ToDoItemViewState extends State<ToDoItemView> {
                   child: Text(
                     widget.toDoItem.text,
                     style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
                   ),
                 ),
                 Row(
                   children: [
                     Checkbox(
-                      value: _isDone,
+                      value: _toDo['isDone'],
                       onChanged: (bool? value) {
                         setState(() {
-                          _isDone = value!;
-                          ToDoModel.update(widget.toDoItem.id, widget.toDoItem.text, value);
+                          _toDo['isDone'] = value!;
+                          ToDoModel.update(
+                              widget.toDoItem.id, widget.toDoItem.text, value);
                         });
                       },
                     ),
@@ -68,7 +74,7 @@ class _ToDoItemViewState extends State<ToDoItemView> {
                       onPressed: () {
                         _navigateAndDisplaySelection(context);
                       },
-                    )
+                    ),
                   ],
                 ),
               ],
